@@ -190,8 +190,8 @@ public class AddStudent  extends JFrame implements ActionListener {
 
                 JOptionPane.showMessageDialog(null, "Student Details Inserted Successfully");
                 setVisible(false);
-            } catch (Exception xe) {
-                xe.printStackTrace();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
         else {
