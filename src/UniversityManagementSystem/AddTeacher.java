@@ -165,7 +165,39 @@ public class AddTeacher  extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource()==submit)
+        {
+            String name = tfname.getText();
+            String fname = tffname.getText();
+            String rollno = labelempid.getText();
+            String dob = ((JTextField) dcdob.getDateEditor().getUiComponent()).getText();
+            String address = tfaddress.getText();
+            String phone = tfphone.getText();
+            String email = tfemail.getText();
+            String x = tfx.getText();
+            String xii = tfxii.getText();
+            String aadhar = tfaadhar.getText();
+            String course = (String) cbcourse.getSelectedItem();
+            String branch = (String) cbbranch.getSelectedItem();
 
+            try {
+                String query = "insert into teacher values('"+name+"', '"+fname+"', '"+rollno+"', '"+dob+"', '"+address+"', '"+phone+"', '"+email+"', '"+x+"', '"+xii+"', '"+aadhar+"', '"+course+"', '"+branch+"')";
+
+                Conn con = new Conn();
+                con.s.executeUpdate(query);
+
+                JOptionPane.showMessageDialog(null, "Teacher Details Inserted Successfully");
+                setVisible(false);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        else {
+            setVisible(false);
+        }
+    }
     public static void main(String[] args) {
         new AddTeacher();
     }
