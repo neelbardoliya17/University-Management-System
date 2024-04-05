@@ -90,7 +90,45 @@ public class StudentDetails extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==search)
+        {
+            String query="select * from student where rollno = '"+crollno.getSelectedItem()+"' ";
+            try
+            {
+                Conn c=new Conn();
+                ResultSet rs=c.s.executeQuery(query);
+                table.setModel(DbUtils.resultSetToTableModel(rs));
+            }catch(Exception ec)
+            {
+                ec.printStackTrace();
+            }
+        }
+        else if(e.getSource()==print)
+        {
+            try
+            {
+                table.print();
+            }catch(Exception ec)
+            {
+                ec.printStackTrace();
+            }
+        }else if(e.getSource()==add)
+        {
+            setVisible(false);
+            new AddStudent();
+        }
 
+        else if(e.getSource()==update)
+        {
+            setVisible(false);
+//            new UpdateStudent();
+        }
+        else
+        {
+            setVisible(false);
+        }
+    }
 
     public static void main(String[] args) {
         new StudentDetails();
