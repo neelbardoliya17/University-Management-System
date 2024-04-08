@@ -69,7 +69,26 @@ public class TeacherLeaveDetails extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == search) {
+            String query = "select * from teacherleave where rollno = '"+cEmpId.getSelectedItem()+"'";
+            try {
+                Conn c = new Conn();
+                ResultSet rs = c.s.executeQuery(query);
+                table.setModel(DbUtils.resultSetToTableModel(rs));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (ae.getSource() == print) {
+            try {
+                table.print();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            setVisible(false);
+        }
+    }
 
     public static void main(String[] args) {
         new TeacherLeaveDetails();
