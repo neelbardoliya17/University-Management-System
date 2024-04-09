@@ -127,7 +127,26 @@ public class EnterMarks extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == submit) {
+            try {
+                Conn c = new Conn();
 
+                String query1 = "insert into subject values('"+crollno.getSelectedItem()+"', '"+cbsemester.getSelectedItem()+"', '"+tfsub1.getText()+"', '"+tfsub2.getText()+"', '"+tfsub3.getText()+"', '"+tfsub4.getText()+"', '"+tfsub5.getText()+"')";
+                String query2 = "insert into marks values('"+crollno.getSelectedItem()+"', '"+cbsemester.getSelectedItem()+"', '"+tfmarks1.getText()+"', '"+tfmarks2.getText()+"', '"+tfmarks3.getText()+"', '"+tfmarks4.getText()+"', '"+tfmarks5.getText()+"')";
+
+                c.s.executeUpdate(query1);
+                c.s.executeUpdate(query2);
+
+                JOptionPane.showMessageDialog(null, "Marks Inserted Sucessfully");
+                setVisible(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            setVisible(false);
+        }
+    }
 
     public static void main(String[] args) {
         new EnterMarks();
